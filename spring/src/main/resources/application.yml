@@ -1,0 +1,24 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: campanha
+  data:
+    mongodb:
+      auto-index-creation: true
+      uri: mongodb://localhost:27017/vaquinha-campanha?directConnection=true
+  rabbitmq:
+    # CloudAMQP. A senha NÃO fica no repositório: defina a variável RABBITMQ_PASSWORD
+    host: ${RABBITMQ_HOST:jaragua.lmq.cloudamqp.com}
+    port: ${RABBITMQ_PORT:5671}
+    username: ${RABBITMQ_USERNAME:ejsjhrca}
+    password: ${RABBITMQ_PASSWORD}
+    virtual-host: ${RABBITMQ_VHOST:ejsjhrca}
+    ssl:
+      enabled: ${RABBITMQ_SSL:true}
+event:
+  exchange: vaquinha.eventos
+  doacao-realizada:
+    queue: campanha.doacao-realizada
+    routing-key: doacao.realizada
